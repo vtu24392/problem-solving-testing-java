@@ -2,17 +2,18 @@
 
 class Solution {
     public int maxSubArray(int[] nums) {
-    int currentSum = nums[0];
-    int maxSum = nums[0]; 
+        int currVal = 0;
+        int maxVal = Integer.MIN_VALUE;
 
-    //Kadane's algorithm
+        for(int num : nums) {
+            currVal += num;
+            maxVal = Math.max(currVal, maxVal);
 
-    for (int i = 1; i < nums.length; i++) {
-        currentSum = Math.max(nums[i], currentSum + nums[i]);
+            if(currVal < 0 ) {
+                currVal = 0;
+            }
+        }
 
-        maxSum = Math.max(maxSum, currentSum);
-    }
-
-    return maxSum;
+        return maxVal;
     }
 }
